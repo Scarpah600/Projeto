@@ -1,0 +1,48 @@
+//Criando Tabelas 
+create table aluno (
+    idaluno int not null primary key auto_increment,
+    idNome varchar (45) not null,
+    idRa varchar (45) not null, 
+    idequipe varchar (45) not null
+);
+create table classificacao (
+    idclassic int not null primary key auto_increment
+);
+
+create table equipe (
+   idequipe int not null primary key auto_increment,
+   equipenome varchar(45) not null,
+   equipeConvidada varchar(45) not null,
+   equipeCarro varchar(45) not null
+);
+create table prova (
+    idprova int not null primary key auto_increment,
+    Nprova varchar(45) not null,
+    Pontuacao varchar(45) not null,
+);
+----------------------------------------------------------------------------------------------------------------
+
+//Definindo Foreigyn Key
+//Tabela Prova
+alter table prova
+add column ideequipe int not null
+
+alter table prova
+add constraint fk_prova_tabela foreign key (idequipe) references equipe (idequipe);
+----------------------------------------------------------------------------------------------------------------
+
+//Tabela Aluno 
+alter table aluno
+add column idaluno int not null
+
+alter table aluno
+add constraint fk_aluno_idequipe foreign key (idequipe) references equipe (idequipe);
+----------------------------------------------------------------------------------------------------------------
+alter table classificacao
+add column idaluno int not null
+
+alter table classificacao
+add constraint fk_aluno_idequipe foreign key (idequipe) references equipe (idequipe);
+----------------------------------------------------------------------------------------------------------------
+
+
